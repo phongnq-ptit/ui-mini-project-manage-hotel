@@ -1,26 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router } from "react-router-dom";
+import Layout from "./components/Layout";
+import { BookingContextProvider } from "./context/BookingContext";
+import { EventContextProvider } from "./context/EventContext";
+import { RoomContextProvider } from "./context/RoomContext";
+import { UserContextProvider } from "./context/UserContext";
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <UserContextProvider>
+      <EventContextProvider>
+        <RoomContextProvider>
+          <BookingContextProvider>
+            <Router>
+              <div id="App">
+                <Layout />
+              </div>
+            </Router>
+          </BookingContextProvider>
+        </RoomContextProvider>
+      </EventContextProvider>
+    </UserContextProvider>
   );
-}
+};
 
 export default App;
